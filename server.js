@@ -16,7 +16,7 @@ const app = express()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 // export const filePath = __dirname+'/client/public/exportdata.xlsx'
-export const filePath = '/tmp/exportdata.xlsx'
+export const filePath = __dirname+'/tmp/exportdata.xlsx'
 dotenv.config()
 
 app.use(express.json())
