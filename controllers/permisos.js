@@ -324,8 +324,9 @@ export const exportPermisos = async (req, res) => {
                 const ws = XLSX.utils.json_to_sheet(temp)
                 const down = filePath
                 XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
-                XLSX.writeFile(wb, down)
-                res.sendFile(down)
+                XLSX.writeFile(wb, '/tmp/exportdata.xlsx')
+                console.log('file generated successfully')
+                res.sendFile('/tmp/exportdata.xlsx')
             } catch (error) {
                 console.log(error)
                 res.status(400).json({ message: 'No se pudo generar el archivo' })
