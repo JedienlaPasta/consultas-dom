@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.42feb3a0.css",
-    "main.js": "/static/js/main.bec90f4c.js",
+    "main.js": "/static/js/main.7e473a59.js",
     "static/media/algarrobo.png": "/static/media/algarrobo.5e3fdc3839475528df7c.png",
     "index.html": "/index.html",
     "main.42feb3a0.css.map": "/static/css/main.42feb3a0.css.map",
-    "main.bec90f4c.js.map": "/static/js/main.bec90f4c.js.map"
+    "main.7e473a59.js.map": "/static/js/main.7e473a59.js.map"
   },
   "entrypoints": [
     "static/css/main.42feb3a0.css",
-    "static/js/main.bec90f4c.js"
+    "static/js/main.7e473a59.js"
   ]
 }
