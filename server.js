@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 import path from 'path'
+import os from 'os'
 
 import rolesRoutes from './routes/roles.js'
 import permisosRoutes from './routes/permisos.js'
@@ -16,7 +17,10 @@ const app = express()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 // export const filePath = __dirname+'/client/public/exportdata.xlsx'
-export const filePath = __dirname+'/tmp/exportdata.xlsx'
+// export const filePath = __dirname+'/tmp/exportdata.xlsx'
+// export const filePath = __dirname+'/tmp/exportdata.xlsx'
+export const filePath = os.tmpdir()+'/exportdata.xlsx'
+console.log(filePath)
 dotenv.config()
 
 app.use(express.json())
