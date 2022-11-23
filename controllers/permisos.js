@@ -323,7 +323,7 @@ export const exportPermisos = async (req, res) => {
             const ws = XLSX.utils.json_to_sheet(temp)
             const down = filePath
             XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
-            XLSX.writeFile(wb, down)
+            // XLSX.writeFile(wb, down)
             res.sendFile(down)
         }    
     })
