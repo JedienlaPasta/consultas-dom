@@ -318,13 +318,18 @@ export const exportPermisos = async (req, res) => {
             console.log(err)
         }
         else {
-            let temp = JSON.stringify(data)
-            temp = JSON.parse(temp)
-            const ws = XLSX.utils.json_to_sheet(temp)
-            const down = filePath
-            XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
-            XLSX.writeFile(wb, down)
-            res.sendFile(down)
+            try {
+                let temp = JSON.stringify(data)
+                temp = JSON.parse(temp)
+                const ws = XLSX.utils.json_to_sheet(temp)
+                const down = filePath
+                XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
+                XLSX.writeFile(wb, down)
+                res.sendFile(down)
+            } catch (error) {
+                console.log(error)
+                res.status(400).json({ message: 'No se pudo generar el archivo' })
+            }
         }    
     })
 }
