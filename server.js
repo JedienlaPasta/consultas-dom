@@ -19,7 +19,7 @@ const __dirname = dirname(__filename)
 // export const filePath = __dirname+'/client/public/exportdata.xlsx'
 // export const filePath = __dirname+'/tmp/exportdata.xlsx'
 // export const filePath = __dirname+'/tmp/exportdata.xlsx'
-export const filePath = __dirname+'/tmp/exportdata.xlsx'
+export const filePath = '/tmp/exportdata.xlsx'
 // console.log(filePath)
 dotenv.config()
 
