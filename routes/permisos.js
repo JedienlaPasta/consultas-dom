@@ -1,5 +1,5 @@
 import express from 'express'
-import { getPermisoRolV, getPermisoRolA, getPermisoByApellidoP, getPermisosByDIR, createPermiso, updatePermiso ,deletePermiso, exportPermisos, gerPermisosBySector, getM2Total, getPermisosByRUT, getPermisoById } from '../controllers/permisos.js'
+import { getPermisoRolV, getPermisoRolA, getPermisoByApellidoP, getPermisosByDIR, createPermiso, updatePermiso ,deletePermiso, exportPermisos, gerPermisosBySector, getM2Total, getPermisosByRUT, getPermisoById, createFile } from '../controllers/permisos.js'
 import { authenticateToken } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
@@ -16,5 +16,6 @@ router.get('/exportpermisos', authenticateToken, exportPermisos)
 router.post('/create', authenticateToken, createPermiso)
 router.patch('/update', authenticateToken, updatePermiso)
 router.delete('/delete', authenticateToken, deletePermiso)
+router.get('/backup', createFile)
 
 export default router
