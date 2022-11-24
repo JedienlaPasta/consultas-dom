@@ -326,6 +326,7 @@ export const exportPermisos = async (req, res) => {
                 XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
                 XLSX.writeFile(wb, down)
                 console.log('file generated successfully')
+                console.log(down)
                 res.sendFile(down)
             } catch (error) {
                 console.log(error)
