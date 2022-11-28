@@ -398,6 +398,7 @@ export const createFiles = async () => {
     Permiso.find((err, data) => {
         if (err) {
             console.log(err)
+            res.status(400).json({ message: 'No se pudo generar el archivo' })
         }
         else {
                 // console.log(filePath)
@@ -408,19 +409,8 @@ export const createFiles = async () => {
                 XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
                 XLSX.writeFile(wb, down)
                 createAndUploadFile(auth).catch(console.error)
+                return res.status(200).json({ message: 'Permiso eliminado exitosamente' })
         }    
-    })
-}
-
-export const createFile = async (req, res) => {
-    Permiso.find((err, data) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            console.log('Permiso eliminado exitosamente')
-            return res.status(200).json({ message: 'Permiso eliminado exitosamente' })
-        }
     })
 }
 
