@@ -375,7 +375,7 @@ const createAndUploadFile = async (auth) => {
         body: fs.createReadStream(filePath)
     }
 
-    let response = await driveService.files.create({
+    let response = driveService.files.create({
         resource: fileMetaData,
         media: media,
         fields: 'id'
@@ -384,15 +384,15 @@ const createAndUploadFile = async (auth) => {
     switch(response.status) {
         case 200:
             console.log('File Created id: ', response.data.id)
-            break
+            return
         default:
             console.error('Error creating file, ' + response.error)
-            break
+            return
     }
 }
 
 // Esta funcion crea un archivo excel que contiene toda la informacion, relacionada a los permisos, almacenada en la base de datos 
-export const createFile = async (req, res) => {
+export const createFile = async () => {
     const wb = XLSX.utils.book_new()
     console.log(time)
     Permiso.find((err, data) => {
@@ -408,7 +408,6 @@ export const createFile = async (req, res) => {
                 XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
                 XLSX.writeFile(wb, down)
                 createAndUploadFile(auth).catch(console.error)
-                res.status(200)
         }    
     })
 }
