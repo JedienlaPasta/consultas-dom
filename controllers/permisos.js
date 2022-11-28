@@ -347,10 +347,10 @@ dotenv.config()
 
 const SCOPES = ['https://www.googleapis.com/auth/drive']
 let time = new Date()
-console.log(time)
-time = time.toString().split(" ")
 // console.log(time)
+time = time.toString().split(" ")
 time =`${time[2]} ${time[1]} ${time[3]} ${time[4]}`
+// console.log(time)
 const name = `DOM Permisos - ${time}.xlsx`
 const auth = new google.auth.GoogleAuth({
     // keyFile: KEYFILEPATH,
@@ -394,6 +394,7 @@ const createAndUploadFile = async (auth) => {
 // Esta funcion crea un archivo excel que contiene toda la informacion, relacionada a los permisos, almacenada en la base de datos 
 export const createFile = async () => {
     const wb = XLSX.utils.book_new()
+    console.log(time)
     Permiso.find((err, data) => {
         if (err) {
             console.log(err)

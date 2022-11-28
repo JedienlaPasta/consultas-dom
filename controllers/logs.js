@@ -7,16 +7,16 @@ const objId = ObjectId.ObjectId
 
 // Para consultar logs guardados
 export const getLogs = async (req, res) => {
+    // console.log(req.query)
     const option = req.query?.option
     const date = req.query?.date
     const id = req.query?.id
-    const rol = option === 'rol' ? JSON.parse(req.query?.rol) : { mz: '', pd: '' }
+    const rol = req.query?.rol
     let logs = []
     
     try {
         if (option === 'fecha' && date !== '') {
             // Start date
-            console.log('date')
             let start = new Date(date)
             start.setDate(start.getDate() + 1)
             start.setHours(0,0,0,0)
@@ -41,7 +41,6 @@ export const getLogs = async (req, res) => {
             }
         }
         else {
-            console.log('all')
             logs = await Log.find().sort([['_id', -1]])
         }
     } catch (error) {
