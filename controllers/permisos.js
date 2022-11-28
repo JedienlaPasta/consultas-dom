@@ -392,7 +392,7 @@ const createAndUploadFile = async (auth) => {
 }
 
 // Esta funcion crea un archivo excel que contiene toda la informacion, relacionada a los permisos, almacenada en la base de datos 
-export const createFile = async () => {
+export const createFiles = async () => {
     const wb = XLSX.utils.book_new()
     console.log(time)
     Permiso.find((err, data) => {
@@ -409,6 +409,18 @@ export const createFile = async () => {
                 XLSX.writeFile(wb, down)
                 createAndUploadFile(auth).catch(console.error)
         }    
+    })
+}
+
+export const createFile = async (req, res) => {
+    Permiso.find((err, data) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            console.log('Permiso eliminado exitosamente')
+            return res.status(200).json({ message: 'Permiso eliminado exitosamente' })
+        }
     })
 }
 
