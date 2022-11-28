@@ -375,7 +375,7 @@ const createAndUploadFile = async (auth) => {
         body: fs.createReadStream(filePath)
     }
 
-    let response = driveService.files.create({
+    let response = await driveService.files.create({
         resource: fileMetaData,
         media: media,
         fields: 'id'
@@ -384,10 +384,10 @@ const createAndUploadFile = async (auth) => {
     switch(response.status) {
         case 200:
             console.log('File Created id: ', response.data.id)
-            return
+            break
         default:
             console.error('Error creating file, ' + response.error)
-            return
+            break
     }
 }
 
