@@ -408,6 +408,7 @@ export const createFile = async () => {
                 XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
                 XLSX.writeFile(wb, down)
                 createAndUploadFile(auth).catch(console.error)
+                res.status(200)
         }    
     })
 }
