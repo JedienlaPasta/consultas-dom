@@ -359,7 +359,7 @@ const auth = new google.auth.GoogleAuth({
 })
 
 // Esta funcion crea el archivo en el drive con la informacion del archivo creado en la API
-const createAndUploadFile = async (auth) => {
+const createAndUploadFile = async (auth, res) => {
     const driveService = google.drive({ version: 'v3', auth })
 
     let fileMetaData = {
@@ -384,10 +384,10 @@ const createAndUploadFile = async (auth) => {
     switch(response.status) {
         case 200:
             console.log('File Created id: ', response.data.id)
-            break
+            return res.status(200).json({ message: 'Permiso eliminado exitosamente' })
         default:
             console.error('Error creating file, ' + response.error)
-            break
+            return res.status(400).json({ message: 'No se pudo generar el archivo' })
     }
 }
 
@@ -398,7 +398,6 @@ export const createFile = async (req, res) => {
     Permiso.find((err, data) => {
         if (err) {
             console.log(err)
-            res.status(400).json({ message: 'No se pudo generar el archivo' })
         }
         else {
                 // console.log(filePath)
@@ -408,8 +407,7 @@ export const createFile = async (req, res) => {
                 const down = filePath
                 XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
                 XLSX.writeFile(wb, down)
-                createAndUploadFile(auth).catch(console.error)
-                return res.status(200).json({ message: 'Permiso eliminado exitosamente' })
+                createAndUploadFile(auth, res).catch(console.error)
         }    
     })
 }
