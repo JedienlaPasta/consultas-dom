@@ -384,7 +384,7 @@ const createAndUploadFile = async (auth, res) => {
     switch(response.status) {
         case 200:
             console.log('File Created id: ', response.data.id)
-            return res.status(200).json({ message: 'Permiso eliminado exitosamente' })
+            return res.status(200).json({ message: 'Archivo generado exitosamente' })
         default:
             console.error('Error creating file, ' + response.error)
             return res.status(400).json({ message: 'No se pudo generar el archivo' })
