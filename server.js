@@ -18,9 +18,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 // export const filePath = __dirname+'/client/public/exportdata.xlsx'
 // export const filePath = __dirname+'/tmp/exportdata.xlsx'
-// export const filePath = __dirname+'/tmp/exportdata.xlsx'
 export const filePath = '/tmp/exportdata.xlsx'
-// console.log(filePath)
 dotenv.config()
 
 app.use(express.json())
@@ -41,8 +39,6 @@ app.get('*', (req, res) => {
 })
 
 const PORT = process.env.PORT || 5000
-
-// const CONNECTION_URL = 'mongodb+srv://mongo:BELC6ZxeB53MnQza@rolescluster.u7c3e.mongodb.net/rolesDB?retryWrites=true&w=majority'
 
 mongoose.connect(process.env.CONNECTION_URL || CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
