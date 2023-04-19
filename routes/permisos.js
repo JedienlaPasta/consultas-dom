@@ -15,7 +15,7 @@ router.get('/m2total', authenticateToken, getM2Total)
 router.get('/exportpermisos', authenticateToken, exportPermisos)
 router.post('/create', authenticateToken, createPermiso)
 router.patch('/update', authenticateToken, updatePermiso)
-router.delete('/delete', authenticateToken, deletePermiso)
+router.delete('/delete/:id', authenticateToken, deletePermiso)
 router.get('/backup', createFile)
 
 export default router

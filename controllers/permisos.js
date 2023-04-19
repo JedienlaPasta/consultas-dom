@@ -283,6 +283,7 @@ export const updatePermiso = async (req, res) => {
     Object.keys(toUpdate.toJSON()).forEach((key) => key !== '__v' && (toUpdate[key] = permiso[key] || (typeof permiso[key] == 'number' ? 0 : '')))
     try {
         await createLog(req)
+        // ss
         await toUpdate.save()
         console.log('permiso actualizado exitosamente')
         res.status(200).json({ message: 'Permiso actualizado exitosamente' })
@@ -293,7 +294,8 @@ export const updatePermiso = async (req, res) => {
 }
 
 export const deletePermiso = async (req, res) => {
-    const id = JSON.parse(req.query.id).id
+    const id = req.params.id
+    // console.log(req.body)
     const toDelete = await Permiso.findOne({ _id: id })
     if (!toDelete) {
         console.log('este permiso no existe')
@@ -302,6 +304,7 @@ export const deletePermiso = async (req, res) => {
     req.action = 'ELIMINAR'
     try {
         await createLog(req)
+        // ss
         await Permiso.deleteOne({ _id: toDelete._id })
         console.log('permiso eliminado exitosamente')
         res.status(200).json({ message: 'Permiso eliminado exitosamente' })

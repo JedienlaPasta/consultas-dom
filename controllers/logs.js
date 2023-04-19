@@ -45,11 +45,11 @@ export const getLogs = async (req, res) => {
         }
     } catch (error) {
         if (!logs.length) {
-            return res.status(404).json({ message: 'No se encontraron logs' })
+            return res.status(404).json({ message: 'No se encontraron registros' })
         }
     }
     if (!logs.length) {
-        return res.status(404).json({ message: 'No se encontraron logs' })
+        return res.status(404).json({ message: 'No se encontraron registros' })
     }
     logs = logs.map(log => (
         {...log._doc, date: log._id.getTimestamp()}
@@ -107,10 +107,10 @@ export const createLog = async (req, res) => {
         insertLog = keys.length > 0
     }
     else if (req.action === 'ELIMINAR') {
-        const id = JSON.parse(req.query.id).id
+        const id = req.params?.id
         let oldPermiso = await Permiso.findOne({ _id: id })
         oldPermiso = oldPermiso._doc
-        const user = JSON.parse(req.query.user)
+        const username = req.body?.username
         
         Object.keys(oldPermiso).forEach((key) => !oldPermiso[key] ? oldPermiso[key] = undefined : null)
         const logOldPermisoToInsert = await new LogPermiso(oldPermiso)
@@ -118,13 +118,15 @@ export const createLog = async (req, res) => {
             permisoId: id,
             matriz: oldPermiso.MATRIZ_V,
             digito: oldPermiso.DIGITO_V,
-            user: user.name,
+            user: username,
             action: req.action,
             previousVal: logOldPermisoToInsert
         }
     }
     const logToInsert = new Log(logInfo)
     console.log(logToInsert)
+
+    // ss
 
     try {
         if (insertLog) {
