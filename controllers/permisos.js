@@ -196,11 +196,11 @@ export const gerPermisosBySector = async (req, res) => {
 
 //     // Actualiza la base de datos completa en los campos especificados con los valores definidos
 //     await RolData.updateMany(
-//         { "NOMBRE": { $regex: /¡/ }},
+//         { "PROPIETARIO": { $regex: /¡/ }},
 //         [{
 //             $set: {
-//                 "NOMBRE": {
-//                     $replaceAll: { input: "$NOMBRE", find: "¡", replacement: "," }
+//                 "PROPIETARIO": {
+//                     $replaceAll: { input: "$PROPIETARIO", find: "¡", replacement: "," }
 //                 },
 //             }
 //         }]

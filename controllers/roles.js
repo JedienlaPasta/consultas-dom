@@ -37,8 +37,11 @@ export const getRolesByRUT = async (req, res) => {
 
 export const getRolesByDIR = async (req, res) => {
     const dir = req.query.dir || 'empty'
+    const reg = await RolData.find({ DIRECCION: {$regex: dir, $options: 'i'} }).sort({'ROL_AVALUO_1': 1, 'ROL_AVALUO_2': 1})
+    if (!reg.length){
+        return res.status(404).json({ message: 'No se encontraron coincidencias'})
+    }
     try {
-        const reg = await RolData.find({ DIRECCION: {$regex: dir, $options: 'i'} }).sort({'ROL_AVALUO_1': 1, 'ROL_AVALUO_2': 1})
         res.status(200).json(reg)
     } catch (error) {
         res.status(404).json({ message: 'No se encontraron resultados' })
